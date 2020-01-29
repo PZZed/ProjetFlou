@@ -32,5 +32,4 @@ namespace fuzzy{
 }
 
 
-
 #endif //THENMULT_H
