@@ -21,11 +21,11 @@ namespace fuzzy{
         AndMult();
 
     public:
-        T evaluate(core::Expression<T>* l,core::Expression<T>* r);
+        virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r) const;
     };
 
     template<class T>
-    T AndMult<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) {
+    T AndMult<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const{
         return l->evaluate() * r->evaluate() ;
     }
 
