@@ -17,12 +17,12 @@ class AndMin : public And<T> {
 
 public:
     AndMin();
-    T evaluate(core::Expression<T>* l,core::Expression<T>* r);
+    virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r) const;
 
 };
 
     template<class T>
-    T AndMin<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) {
+    T AndMin<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const{
         return l->evaluate() < r->evaluate() ? l->evaluate() : r->evaluate();
     }
 
