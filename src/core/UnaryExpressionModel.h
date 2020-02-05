@@ -6,20 +6,20 @@
 
 namespace core{
     template <class T>
-    class UnaryExpressionModel : public Expression<T>, public UnaryExpresssion<T>{
+    class UnaryExpressionModel : public Expression<T>, public UnaryExpression<T>{
     public:
-        UnaryExpressionModel(const Expression<T>& operand, const UnaryExpresssion<T>&ope);
+        UnaryExpressionModel(Expression<T>* operand,  UnaryExpression<T>* ope);
         virtual ~UnaryExpressionModel(){};
         virtual T evaluate()const;
         virtual T evaluate(Expression<T>*)const;
 
     private:
-        Expression<T> operand;
-        UnaryExpresssion<T> ope;
+        Expression<T>* operand;
+        UnaryExpression<T>* ope;
     };
 
     template<class T>
-    UnaryExpressionModel<T>::UnaryExpressionModel(const Expression<T>& operand, const UnaryExpresssion<T>& ope): operand(operand), ope(ope) {}
+    UnaryExpressionModel<T>::UnaryExpressionModel(Expression<T>* operand, UnaryExpression<T>* ope): operand(operand), ope(ope) {}
 
     template<class T>
     T UnaryExpressionModel<T>::evaluate() const {
@@ -30,7 +30,7 @@ namespace core{
     template<class T>
     T UnaryExpressionModel<T>::evaluate(Expression<T> * op) const {
         if(ope != nullptr)
-            return ope.evaluate(op);
+            return ope->evaluate(op);
     }
 }
 

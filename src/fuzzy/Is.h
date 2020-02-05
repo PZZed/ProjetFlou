@@ -5,7 +5,7 @@
 
 namespace fuzzy{
     template <class T>
-    class Is : public core::UnaryExpresssion<T>{
+    class Is : public core::UnaryExpression<T>{
     };
 }
 
