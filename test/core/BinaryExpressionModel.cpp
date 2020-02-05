@@ -1,11 +1,18 @@
+//
+// Created by pz on 05/02/2020.
+//
+
 #include <gtest/gtest.h>
+#include "../../src/core/BinaryExpressionModel.h"
 #include "../../src/core/UnaryExpressionModel.h"
 #include "../../src/core/ValueModel.h"
+
+#include "../../src/fuzzy/AndMin.h"
 #include "../../src/fuzzy/IsTriangle.h"
 
 using namespace fuzzy;
 
-TEST(UnaryExpressionModel,evaluate){
+TEST(BinaryExpression,evaluate){
 
     core::ValueModel<float> food(8);
     core::ValueModel<float> service(3);
@@ -15,6 +22,9 @@ TEST(UnaryExpressionModel,evaluate){
 
     core::UnaryExpressionModel<float> left(&food,&excellent);
     core::UnaryExpressionModel<float> right(&service,&bad);
-    ASSERT_EQ(left.evaluate(), 1.f);
-    ASSERT_EQ(right.evaluate(),0.5f);
+
+
+    AndMin<float> amin;
+    core::BinaryExpressionModel<float> binaryExpressionModel(&left,&right,&amin);
+    ASSERT_EQ(binaryExpressionModel.evaluate(),0.5f);
 }
