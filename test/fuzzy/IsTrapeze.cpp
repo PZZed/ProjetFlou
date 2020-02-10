@@ -53,7 +53,7 @@ TEST(IsTrapeze, evaluateRising){
     v.setValue(12.0f);
     ASSERT_EQ(op.evaluate(&v), 1.0f);
     v.setValue(17.5f);
-    ASSERT_EQ(op.evaluate(&v), 0.5f);
+    ASSERT_EQ(op.evaluate(&v), 1.0f);
     v.setValue(2.0f);
     ASSERT_EQ(op.evaluate(&v), 0.0f);
 }
