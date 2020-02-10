@@ -36,7 +36,7 @@ namespace fuzzy{
                 return 1;
             } else {
                 // ..../''''\....
-                else if (tmp < lowMax) return (lowMax - tmp) / (lowMax - highMax);
+                if (tmp < lowMax) return (lowMax - tmp) / (lowMax - highMax);
                 else return 0;
             }
         } else {
