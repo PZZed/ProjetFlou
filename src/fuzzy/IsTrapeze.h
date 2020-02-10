@@ -21,11 +21,28 @@ namespace fuzzy{
     template<class T>
     T IsTrapeze<T>::evaluate(core::Expression<T> * o) const {
         T tmp = o->evaluate();
-        if(tmp < lowMin) return 0;
-        else if (tmp < highMin) return (tmp - lowMin) / (highMin - lowMin);
-        else if(tmp < highMax) return 1;
-        else if (tmp < lowMax) return (lowMax - tmp) / (lowMax - highMax);
-        else return 0;
+        if(tmp < highMin) {
+            if(lowMin == highMin) {
+                // '''''''''\....
+                return 1;
+            } else {
+                // ..../''''\....
+                if(tmp < lowMin) return 0;
+                else return (tmp - lowMin) / (highMin - lowMin);
+            }
+        } else if(tmp > highMax) {
+            if(highMax == lowMax) {
+                // ..../'''''''''
+                return 1;
+            } else {
+                // ..../''''\....
+                else if (tmp < lowMax) return (lowMax - tmp) / (lowMax - highMax);
+                else return 0;
+            }
+        } else {
+            return 1;
+        }
+
     }
 }
 #endif //ISTRAPEZE_H
