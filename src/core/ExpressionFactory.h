@@ -12,34 +12,34 @@ namespace core{
         ExpressionFactory(){};
         virtual ~ExpressionFactory();
     protected:
-        virtual Expression<T>* newUnary(const UnaryExpression<T>* ope, const Expression<T> *o );
-        virtual Expression<T>* newBinary(const BinaryExpression<T>* ope,const Expression<T>* l,const Expression<T>* r);
+        virtual Expression<T>* newUnary( UnaryExpression<T>* ope,  Expression<T> *o );
+        virtual Expression<T>* newBinary( BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
     private:
-        Expression<T>* Hold(const Expression<T>*);
+        Expression<T>* Hold( Expression<T>*);
         std::set<Expression<T>*> memory;
     };
 
 
     template<class T>
     ExpressionFactory<T>::~ExpressionFactory() {
-        for(typename std::set<Expression<T>>::iterator i = memory.begin(); i != memory.end(); i++){
-            delete i;
+        for(typename std::set<Expression<T>*>::iterator i = memory.begin(); i != memory.end(); i++){
+            delete *i;
         }
     }
 
     template<class T>
-    Expression<T> *ExpressionFactory<T>::newUnary(const UnaryExpression<T> *ope, const Expression<T>* o) {
-        return new UnaryExpressionModel<T>(ope,o);
+    Expression<T> *ExpressionFactory<T>::newUnary(UnaryExpression<T> *ope,  Expression<T>* o) {
+        return Hold(new UnaryExpressionModel<T>(o,ope));
     }
 
     template<class T>
     Expression<T> *
-    ExpressionFactory<T>::newBinary(const BinaryExpression<T> *ope, const Expression<T> *l, const Expression<T> *r) {
-        return new BinaryExpressionModel<T>(ope,l,r);
+    ExpressionFactory<T>::newBinary( BinaryExpression<T> *ope,  Expression<T> *l,  Expression<T> *r) {
+        return Hold(new BinaryExpressionModel<T>(l,r,ope));
     }
 
     template<class T>
-    Expression<T> *ExpressionFactory<T>::Hold(const Expression<T> * e) {
+    Expression<T> *ExpressionFactory<T>::Hold(Expression<T> * e) {
         this->memory.insert(e);
         return e;
     }
