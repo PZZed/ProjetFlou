@@ -17,7 +17,7 @@ int main() {
     IsBell<float> bell(0,1,2);
     IsGaussian<float> gaussian(0,1);
     ValueModel<float> m(12.f);
-    
+
     cout << bell.evaluate(&m);
     return 0;
 }
