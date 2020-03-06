@@ -16,7 +16,7 @@ namespace fuzzy{
     private:
         T cache;
     public:
-        SugenoThen(){}
+        SugenoThen();
         virtual ~SugenoThen(){}
         T evaluate(core::Expression<T>* l,core::Expression<T>* r);
         T getCache() const;
@@ -32,6 +32,9 @@ namespace fuzzy{
     T SugenoThen<T>::getCache() const {
         return cache;
     }
+
+    template<class T>
+    SugenoThen<T>::SugenoThen() : cache(0) {}
 
 }
 
