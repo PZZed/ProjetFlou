@@ -8,6 +8,7 @@ using namespace core;
 
 TEST(ExpressionFactory,Hold){
     ExpressionFactory<float> fact;
+
 }
 
 TEST(ExpressionFactory,newUnary){

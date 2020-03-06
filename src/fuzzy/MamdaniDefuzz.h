@@ -12,7 +12,16 @@ namespace fuzzy{
     template <class T>
     class MamdaniDeFuzz : public core::BinaryExpression<T> {
 
+    public:
+        virtual T evaluate(core::Expression<T>[])const ;
+
     };
+
+
+    template <class T>
+    T MamdaniDeFuzz<T>::evaluate(core::Expression<T>[])const{
+
+    }
 }
 
 
