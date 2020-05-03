@@ -24,7 +24,7 @@ int main() {
    // std::cout << (sizeof(tab)/ sizeof(*tab));
 
     IsBell<float> bell(0,1,2);
-    IsGaussian<float> gaussian(0,1);
+    //IsGaussian<float> gaussian(0,1);
     ValueModel<float> m(12.f);
 
     //cout << bell.evaluate(&m);
@@ -32,7 +32,7 @@ int main() {
 
 
     ValueModel<float> v(1.0f);
-    IsBell<float> op(1.0f, 1.0f, 0.0f);
+    IsGaussian<float> op(2.0f, 2.0f);
     std::cout <<op.evaluate(&v);
 
     return 0;

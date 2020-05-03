@@ -16,6 +16,6 @@ TEST(IsBell, evaluateFloat){
 
 TEST(IsBell, evaluateDouble){
     ValueModel<double> v(1.0);
-    IsTrapeze<double> op(1.0, 1.0, 0.0);
+    IsBell<double> op(1.0, 1.0, 0.0);
     ASSERT_EQ(op.evaluate(&v), 0.25);
 }
