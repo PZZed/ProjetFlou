@@ -21,6 +21,11 @@ namespace fuzzy{
 
     template<class T>
     MamdaniDeFuzz<T>::MamdaniDeFuzz(const T &min, const T &max, const T &step) :min(min),max(max),step(step){}
+
+    template<class T>
+    T MamdaniDeFuzz<T>::evaluate(core::Expression<T> *, core::Expression<T> *) {
+        return nullptr;
+    }
 }
 
 
