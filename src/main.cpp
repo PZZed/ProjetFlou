@@ -6,6 +6,7 @@
 #include "fuzzy/AndMin.h"
 #include "fuzzy/IsTriangle.h"
 #include "fuzzy/IsGaussian.h"
+#include "fuzzy/IsBell.h"
 #include "fuzzy/SugenoConclusion.h"
 #include "fuzzy/ThenMin.h"
 #include "fuzzy/IsTrapeze.h"
@@ -22,6 +23,11 @@ int main() {
     IsTriangle<float> tab[] = {op,op2,op};
     std::cout << (sizeof(tab)/ sizeof(*tab));
 
-    //s.evaluate(reinterpret_cast<Expression<float> *>(tab));
+    IsBell<float> bell(0,1,2);
+    IsGaussian<float> gaussian(0,1);
+    ValueModel<float> m(12.f);
+
+    cout << bell.evaluate(&m);
+
     return 0;
 }
