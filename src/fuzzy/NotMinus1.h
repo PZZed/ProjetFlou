@@ -4,7 +4,7 @@
 #include "Not.h"
 namespace fuzzy{
     template <class T>
-    class NotMinus1 : public And<T>{
+    class NotMinus1 : public Not<T>{
     public:
         virtual T evaluate(core::Expression<T>*)const;
     };
