@@ -10,6 +10,7 @@
 namespace fuzzy{
     template <class T>
     class SugenoDefuzz : public core::NaryExpresssion<T>{
+
         public:
             virtual T evaluate(core::Expression<T>[])const ;
     };
