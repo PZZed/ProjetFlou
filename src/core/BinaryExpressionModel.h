@@ -22,7 +22,7 @@ namespace core{
         BinaryExpressionModel(Expression<T>* left,Expression<T>* right, BinaryExpression<T>* ope);
 
         virtual ~BinaryExpressionModel();
-
+        virtual BinaryExpression<T>* getOperateur();
         virtual T evaluate()const;
         virtual T evaluate(Expression<T>* l,Expression<T>* r)const;
     };
@@ -44,6 +44,11 @@ namespace core{
     T BinaryExpressionModel<T>::evaluate(Expression<T>* l, Expression<T>* r) const {
         if (ope != nullptr)
             return ope->evaluate(l, r);
+    }
+
+    template<class T>
+    BinaryExpression<T> *BinaryExpressionModel<T>::getOperateur() {
+        return this->ope;
     }
 
 }

@@ -13,28 +13,33 @@
 namespace fuzzy{
     template <class T>
     class SugenoThen : public Then<T> {
-    private:
-        T cache;
     public:
-        SugenoThen();
-        virtual ~SugenoThen(){}
-        T evaluate(core::Expression<T>* l,core::Expression<T>* r);
-        T getCache() const;
+        virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r)const ;
+        virtual T getPremisse()const;
+        virtual void setPremisse(T);
+    private:
+        mutable T valeurPremisse; // mutable car modification dans le const.
     };
 
     template<class T>
-    T SugenoThen<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) {
-        cache = l->evaluate();
-        return cache * r->evaluate();
+    T SugenoThen<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const{
+        if(l==nullptr||r== nullptr){
+            //pblm TODO exception ou un truc du genre
+        }
+        setPremisse(l->evaluate());
+        return this->valeurPremisse*r->evaluate();
     }
 
     template<class T>
-    T SugenoThen<T>::getCache() const {
-        return cache;
+    T SugenoThen<T>::getPremisse() const {
+        return this->valeurPremisse;
     }
 
     template<class T>
-    SugenoThen<T>::SugenoThen() : cache(0) {}
+    void SugenoThen<T>::setPremisse(T premisse) {
+        this->valeurPremisse = premisse;
+    }
+
 
 }
 
