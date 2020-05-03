@@ -11,8 +11,16 @@
 namespace fuzzy{
     template <class T>
     class MamdaniDeFuzz : public core::BinaryExpression<T> {
-
+    public:
+        MamdaniDeFuzz(const T & min, const T & max, const T & step);
+        virtual ~MamdaniDeFuzz(){}
+        virtual  T evaluate(core::Expression<T>* ,core::Expression<T>*);
+    private:
+        T min,max,step;
     };
+
+    template<class T>
+    MamdaniDeFuzz<T>::MamdaniDeFuzz(const T &min, const T &max, const T &step) :min(min),max(max),step(step){}
 }
 
 
