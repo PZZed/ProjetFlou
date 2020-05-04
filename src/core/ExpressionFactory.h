@@ -11,7 +11,7 @@ namespace core{
     public:
         ExpressionFactory(){};
         virtual ~ExpressionFactory();
-    protected:
+   // protected:
         virtual Expression<T>* newUnary( UnaryExpression<T>* ope,  Expression<T> *o );
         virtual Expression<T>* newBinary( BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
     private:
