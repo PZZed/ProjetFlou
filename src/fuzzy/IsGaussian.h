@@ -1,6 +1,8 @@
 #include <cmath>
 #include "Is.h"
 #include "../core/Expression.h"
+#include <
+
 namespace fuzzy{
     template <class T>
     class IsGaussian : Is<T>{
@@ -10,14 +12,14 @@ namespace fuzzy{
         virtual T evaluate(core::Expression<T>*)const;
 
     private:
-    T variance;
-    T ecartType;
+        T variance;
+        T ecartType;
     };
 
     template<class T>
     T IsGaussian<T>::evaluate(core::Expression<T> * e) const {
         T x = e->evaluate();
-        return (exp(-(x*x - ecartType*ecartType) / variance * variance)) / (2 * M_PI * variance * variance);
+        return (exp(-1*((x-ecartType)*(x-ecartType))/(2*variance*variance))/ ( variance* sqrt(2*M_PI)));
     }
 
     template<class T>
