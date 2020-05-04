@@ -10,10 +10,10 @@
 
 namespace fuzzy {
     template <class T>
-    class commands {
+    class Commands {
     public:
-        commands();
-        virtual ~commands(){}
+        Commands();
+        virtual ~Commands(){}
         void running()const;
         void process(std::string pro)const;
     private:
@@ -22,7 +22,7 @@ namespace fuzzy {
     };
 
     template<class T>
-    commands<T>::commands() {}
+    Commands<T>::Commands() {}
 
     template<class T>
     int running() {
