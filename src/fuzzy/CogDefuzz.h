@@ -6,28 +6,31 @@
 #define COGDEFUZZ_H
 
 #include <vector>
-#include "MamdaniDefuzz.h"
+#include "MamdaniDeFuzz.h"
 #include "../core/BinaryExpression.h"
+#include "Shape.h"
 
 namespace fuzzy{
     template <class T>
-class CogDeFuzz : public MamdaniDeFuzz<T> {
+    class CogDeFuzz : public MamdaniDeFuzz<T> {
     public:
-        CogDeFuzz();
+        CogDeFuzz(const T& min,const T& max,const T& step);
         virtual ~CogDeFuzz() {};
-
+        virtual T defuzzification(const Shape<T> &s)const;
         virtual T evaluate(core::Expression<T> * l, core::Expression<T> * r) const;
     };
-    template <class T>
-    CogDeFuzz<T>::CogDeFuzz()
-    {
 
+
+    template<class T>
+    T CogDeFuzz<T>::evaluate(core::Expression<T> *l, core::Expression<T> *r) const {
+        Shape<T> s = Shape<T>::buildShape(this->getMin(),this->getMax(),this->getStep(),l,r);
+        return defuzzification(s);
     }
 
     template<class T>
-    T CogDeFuzz<T>::defuzz(const Shape<T> &s) const {
-        std::vector<T> xs =  s.getXs();
-        std::vector<T> ys = s.getYs();
+    T CogDeFuzz<T>::defuzzification(const Shape<T> &s) const {
+        std::vector<T> xs = s.getXAxis();
+        std::vector<T> ys = s.getYAxis();
         float suma = 0;
         float sumb = 0;
         for (unsigned int i = 0; i< xs.size(); i++){
@@ -37,6 +40,9 @@ class CogDeFuzz : public MamdaniDeFuzz<T> {
         return suma/sumb;
     }
 
+    template<class T>
+    CogDeFuzz<T>::CogDeFuzz(const T &min, const T &max, const T &step)
+    : MamdaniDeFuzz<T>(min, max, step) {}
 
 }
 

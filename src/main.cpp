@@ -10,30 +10,73 @@
 #include "fuzzy/SugenoConclusion.h"
 #include "fuzzy/ThenMin.h"
 #include "fuzzy/IsTrapeze.h"
+#include "fuzzy/NotMinus1.h"
+#include "fuzzy/OrMax.h"
+#include "fuzzy/CogDefuzz.h"
+#include "fuzzy/FuzzyFactory.h"
+#include "fuzzy/AggMax.h"
 
 using namespace core;
 using namespace std;
 using namespace fuzzy;
 
 int main() {
-    float t[] = {5.f, 6.f};
-   // SugenoConclusion<float> s(t);
-    //IsTriangle<float> op(5.0f,10.0f,15.0f);
-   // IsTriangle<float> op2(5.0f,10.0f,15.0f);
-    //IsTriangle<float> tab[] = {op,op2,op};
-   // std::cout << (sizeof(tab)/ sizeof(*tab));
+    NotMinus1<float> opNot;
+    AndMin<float> opAnd;
+    OrMax<float> opOr;
+    ThenMin<float> opThen;
+    CogDeFuzz<float> opDefuzz(0,25,1);
+    AggMax<float> opAgg;
+    //todo rename to fuzzyExpressionFactory
+    FuzzyFactory<float> f(&opAnd,&opOr,&opThen,&opDefuzz,&opAgg,&opNot);
+    IsTriangle<float> poor(-5,0,5);
+    IsTriangle<float> good(0,5,10);
+    IsTriangle<float> excellent(5,10,15);
+    IsTriangle<float> cheap(0,5,10);
+    IsTriangle<float> average(10,15,20);
+    IsTriangle<float> generous(20,25,30);
+    ValueModel<float> service(0);
+    ValueModel<float> food(0);
+    ValueModel<float> tips(0);
+    Expression<float> *r =
+            f.newAgg(
+                    f.newAgg(
+                            f.newThen(
+                                    f.newIs(&poor,&service),
+                                    f.newIs(&cheap,&tips)
+                            ),
+                            f.newThen(
+                                    f.newIs(&good,&service),
+                                    f.newIs(&average,&tips)
+                             )
+                    ),
+            f.newThen(
+                    f.newIs(&excellent,&service),
+                    f.newIs(&generous,&tips)
+                    )
+    );
+    Expression<float> *system = f.newDefuzz(&tips, r, 0, 25, 1);
+    float s;
 
-    IsBell<float> bell(0,1,2);
-    //IsGaussian<float> gaussian(0,1);
-    ValueModel<float> m(12.f);
-
-    //cout << bell.evaluate(&m);
 
 
 
-    ValueModel<float> v(1.0f);
-    IsGaussian<float> op(2.0f, 2.0f);
-    std::cout <<op.evaluate(&v);
+
+
+
+
+
+
+
+
+    while(true)
+    {
+        cout << "service : ";cin >> s;
+        service.setValue(s);
+        cout << "food : ";cin >> s;
+        food.setValue(s);
+        cout << "tips -> " << system->evaluate() << endl;
+    }
 
     return 0;
 }

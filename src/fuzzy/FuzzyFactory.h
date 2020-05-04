@@ -7,7 +7,7 @@
 #include "Or.h"
 #include "Then.h"
 #include "Agg.h"
-#include "MamdaniDefuzz.h"
+#include "MamdaniDeFuzz.h"
 #include "Not.h"
 
 using namespace core;
@@ -22,7 +22,8 @@ namespace fuzzy{
             virtual Expression<T>* newOr(Expression<T>* l, Expression<T>* r);
             virtual Expression<T>* newThen(Expression<T>* l, Expression<T>* r);
             virtual Expression<T>* newDefuzz(Expression<T>* l, Expression<T>* r);
-            virtual Expression<T>* newAgg(Expression<T>* l, Expression<T>* r);
+            virtual Expression<T>* newDefuzz(Expression<T>* l, Expression<T>* r,const T& min,const T&max,const T&step);
+        virtual Expression<T>* newAgg(Expression<T>* l, Expression<T>* r);
             virtual Expression<T>* newNot(Expression<T>* o);
             virtual Expression<T>* newIs(Is<T>* is,Expression<T>* o);
             virtual void changeAnd(const And<T>* a);
@@ -103,6 +104,15 @@ namespace fuzzy{
         delete defuzz_;
         delete agg_;
         delete not_;
+    }
+
+    template<class T>
+    Expression<T> *FuzzyFactory<T>::newDefuzz(Expression<T> *l, Expression<T> *r, const T &min,const T &max,const T &step) {
+        auto* t = (MamdaniDeFuzz<T>*) defuzz_->getTarget();
+        t->setMin(min);
+        t->setMax(max);
+        t->setStep(step);
+        return this->newBinary(defuzz_,l,r);
     }
 
 }
