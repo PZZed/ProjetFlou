@@ -6,7 +6,7 @@
 
 namespace fuzzy{
     template <class T>
-    class SugenoConclusion : public core::NaryExpresssion<T>{
+    class SugenoConclusion : public core::NaryExpression<T>{
     public:
         SugenoConclusion(std::vector<T>);
         ~SugenoConclusion();
