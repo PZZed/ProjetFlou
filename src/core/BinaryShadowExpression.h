@@ -6,12 +6,13 @@ namespace core{
     class BinaryShadowExpression : public BinaryExpression<T>{
     public:
         BinaryShadowExpression(){};
+        BinaryShadowExpression(const BinaryExpression<T> *);
         virtual ~BinaryShadowExpression(){};
         virtual void setTarget(const BinaryExpression<T>*);
-        virtual  BinaryExpression<T>* getTarget();
+        virtual const BinaryExpression<T>* getTarget()const;
         virtual T evaluate(Expression<T>* l,Expression<T>* r)const;
     private:
-        BinaryExpression<T>* target;
+        const BinaryExpression<T>* target;
 
     };
 
@@ -24,5 +25,13 @@ namespace core{
     template<class T>
     T BinaryShadowExpression<T>::evaluate(Expression<T> *l, Expression<T> *r)const {
         return target->evaluate(l,r);
+    }
+
+    template<class T>
+    BinaryShadowExpression<T>::BinaryShadowExpression(const BinaryExpression<T> *be):target(be) {}
+
+    template<class T>
+    const BinaryExpression <T> *BinaryShadowExpression<T>::getTarget()const {
+        return this->target;
     }
 }
