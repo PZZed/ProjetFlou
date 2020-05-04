@@ -65,7 +65,7 @@ calculate::Variables var;
 var.add("coucou" , 12);
 var.changeValue("coucou", 14 );
 var.add("i" , 24);
-
+var.get("salut");
 var.equal("ANS" , "coucou");
 var.printVar();
 

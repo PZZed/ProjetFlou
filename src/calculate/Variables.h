@@ -62,7 +62,7 @@ namespace calculate{
             }
         }
         if(res=INFINITY){
-            std::cout << "cette variable n'existe pas" << std::endl;
+            std::cout <<  s << " n'existe pas" << std::endl;
 
         }
         return res;
