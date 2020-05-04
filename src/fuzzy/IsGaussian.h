@@ -1,7 +1,7 @@
 #include <cmath>
 #include "Is.h"
 #include "../core/Expression.h"
-#include <
+
 
 namespace fuzzy{
     template <class T>
