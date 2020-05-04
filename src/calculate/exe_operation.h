@@ -1,0 +1,8 @@
+//
+// Created by pisel on 04/05/2020.
+//
+
+#ifndef PROJETFLOU_EXE_OPERATION_H
+#define PROJETFLOU_EXE_OPERATION_H
+
+#endif //PROJETFLOU_EXE_OPERATION_H
