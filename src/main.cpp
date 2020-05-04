@@ -14,7 +14,7 @@ using namespace fuzzy;
 int main() {
 
 
-    IsGaussian<float> gaussian(0,1);
+    IsGaussian<float> gaussian(0, 1);
     ValueModel<float> m(12.f);
     gaussian.evaluate(&m);
     return 0;
