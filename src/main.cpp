@@ -18,16 +18,22 @@ using namespace fuzzy;
 int main() {
     float t[] = {5.f, 6.f};
    // SugenoConclusion<float> s(t);
-    IsTriangle<float> op(5.0f,10.0f,15.0f);
-    IsTriangle<float> op2(5.0f,10.0f,15.0f);
-    IsTriangle<float> tab[] = {op,op2,op};
-    std::cout << (sizeof(tab)/ sizeof(*tab));
+    //IsTriangle<float> op(5.0f,10.0f,15.0f);
+   // IsTriangle<float> op2(5.0f,10.0f,15.0f);
+    //IsTriangle<float> tab[] = {op,op2,op};
+   // std::cout << (sizeof(tab)/ sizeof(*tab));
 
     IsBell<float> bell(0,1,2);
-    IsGaussian<float> gaussian(0,1);
+    //IsGaussian<float> gaussian(0,1);
     ValueModel<float> m(12.f);
 
-    cout << bell.evaluate(&m);
+    //cout << bell.evaluate(&m);
+
+
+
+    ValueModel<float> v(1.0f);
+    IsGaussian<float> op(2.0f, 2.0f);
+    std::cout <<op.evaluate(&v);
 
     return 0;
 }
