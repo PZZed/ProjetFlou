@@ -15,6 +15,7 @@
 #include "fuzzy/CogDefuzz.h"
 #include "fuzzy/FuzzyFactory.h"
 #include "fuzzy/AggMax.h"
+#include "calculate/Variables.h"
 
 using namespace core;
 using namespace std;
@@ -60,7 +61,9 @@ int main() {
 
 
 
-
+calculate::Variable<int> var;
+var.add("coucou" , 12);
+var.printVar();
 
 
 

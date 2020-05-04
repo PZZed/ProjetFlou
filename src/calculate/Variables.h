@@ -5,9 +5,39 @@
 #ifndef PROJETFLOU_VARIABLES_H
 #define PROJETFLOU_VARIABLES_H
 
+#include <string>
+#include <map>
+#include <iostream>
+
 namespace calculate{
-    <T>
-    class Variable
+
+    template<class T>
+    class Variable{
+
+
+    private:
+        std::map<std::string,T>	var;
+
+    public:
+        virtual void add(std::string s,T v);
+        virtual void printVar();
+    };
+
+    template<class T>
+    void Variable<T>::add(std::string s,T v){
+        var.insert(s,v);
+    }
+
+    template<class T>
+    void Variable<T>::printVar(){
+        for (std::pair<std::string, int> element : var) {
+            // Accessing KEY from element
+            std::string key = element.first;
+            // Accessing VALUE from element.
+            T value = element.second;
+            std::cout << key << " = " << value << std::endl;
+        }
+    }
 }
 
 
