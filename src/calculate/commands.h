@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace fuzzy {
+namespace calculate {
     template <class T>
     class commands {
     public:
