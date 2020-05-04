@@ -15,6 +15,7 @@
 namespace fuzzy{
     template <class T>
     class SugenoDefuzz : public core::NaryExpresssion<T>{
+
         public:
             SugenoDefuzz();
             virtual ~SugenoDefuzz(){}
