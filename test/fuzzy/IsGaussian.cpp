@@ -1,24 +1,19 @@
+//
+// Created by lesli on 03/05/2020.
+//
 #include <gtest/gtest.h>
-#include "../../src/core/ValueModel.h"
 #include "../../src/fuzzy/IsGaussian.h"
+#include "../../src/core/ValueModel.h"
 
-using namespace fuzzy;
-using namespace core;
-
-
-
-TEST(isGaussianTest,evaluateDouble){
-    ValueModel<float> v(7.f);
-    IsGaussian<float> gaus(0.5f,2.f);
-
-    ASSERT_EQ();
-
+TEST(IsGaussian, evaluateFloat){
+    ValueModel<float> v(1.0f);
+    IsGaussian<float> op(1.0f, 1.0f);
+    ASSERT_EQ(op.evaluate(&v), 0.799178f);
 
 }
 
-TEST(isGaussianTest,evaluatefloat){
-    AggMax<float> op;
-    ValueModel<float> model1(13.0f);
-    ValueModel<float> model2(15.0f);
-    ASSERT_EQ(op.evaluate(&model1,&model2), model2.evaluate());
+TEST(IsGaussian, evaluateDouble){
+    ValueModel<double> v(1.0);
+    IsGaussian<double> op(2.0, 2.0);
+    ASSERT_EQ(op.evaluate(&v), 0.799178);
 }
