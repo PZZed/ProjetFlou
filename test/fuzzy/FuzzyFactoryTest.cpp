@@ -8,6 +8,7 @@
 #include "../../src/fuzzy/NotMinus1.h"
 #include "../../src/fuzzy/IsTriangle.h"
 #include "../../src/fuzzy/AndMin.h"
+#include "../../src/fuzzy/CogDefuzz.h"
 
 using namespace fuzzy;
 
@@ -18,7 +19,7 @@ TEST(FuzzyFactory,newAnd){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -35,7 +36,7 @@ TEST(FuzzyFactory,newOr){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -51,7 +52,7 @@ TEST(FuzzyFactory,newThen){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -72,7 +73,7 @@ TEST(FuzzyFactory,newAgg){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -86,7 +87,7 @@ TEST(FuzzyFactory,newNot){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -100,7 +101,7 @@ TEST(FuzzyFactory,newIs){
     AndMult<float> andm;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
@@ -119,7 +120,7 @@ TEST(FuzzyFactory,changeAnd){
     AndMin<float> andMin;
     OrMax<float> orMax;
     ThenMin<float> thenMin;
-    MamdaniDeFuzz<float> defuzz(0,10,1);
+    CogDeFuzz<float> defuzz(0,10,1);
     AggMax<float> aggMax;
     NotMinus1<float> notMinus1;
     FuzzyFactory<float> f(&andm,&orMax,&thenMin,&defuzz,&aggMax, &notMinus1);
