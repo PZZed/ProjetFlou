@@ -6,14 +6,13 @@
 #include "../../src/core/ValueModel.h"
 
 TEST(IsGaussian, evaluateFloat){
-    ValueModel<float> v(1.0f);
-    IsGaussian<float> op(1.0f, 1.0f);
-    ASSERT_EQ(op.evaluate(&v), 0.799178f);
-
+    core::ValueModel<float> v(1.0f);
+    fuzzy::IsGaussian<float> op(1.0f, 1.0f);
+    ASSERT_NEAR(op.evaluate(&v), 0.398942f,0.00001f);
 }
 
 TEST(IsGaussian, evaluateDouble){
-    ValueModel<double> v(1.0);
-    IsGaussian<double> op(2.0, 2.0);
-    ASSERT_EQ(op.evaluate(&v), 0.799178);
+    core::ValueModel<double> v(1.0);
+    fuzzy::IsGaussian<double> op(2.0, 2.0);
+    ASSERT_NEAR(op.evaluate(&v), 0.176033,0.000001);
 }
