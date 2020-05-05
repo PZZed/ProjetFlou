@@ -32,6 +32,7 @@ namespace core{
         if(ope != nullptr){
             return ope->evaluate(operands);
         }
+
     }
 
     template<class T>
@@ -39,7 +40,7 @@ namespace core{
         if(oper!= nullptr){
             return evaluate(oper);
         }
-    }
+     }
     template <class T>
     NaryExpressionModel<T>::NaryExpressionModel(std::vector<Expression<T>* >* oper,NaryExpression<T>* ope) : operands(oper),ope(ope){}
 

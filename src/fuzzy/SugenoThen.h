@@ -25,8 +25,10 @@ namespace fuzzy{
     T SugenoThen<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const{
         if(l==nullptr||r== nullptr){
             //pblm TODO exception ou un truc du genre
+            std::cout << "PROBLEME " << std::endl;
         }
-        setPremisse(l->evaluate());
+        this->valeurPremisse = l->evaluate();
+
         return this->valeurPremisse*r->evaluate();
     }
 
