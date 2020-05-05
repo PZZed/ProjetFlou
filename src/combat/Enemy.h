@@ -17,7 +17,7 @@ namespace combat{
         Enemy();
         virtual ~Enemy(){}
         virtual int attack();
-        virtual void addEnergy(cosnt int i);
+        virtual void addEnergy(const int i);
         virtual void substractEnergy(const int i);
         virtual void substractHP(const int i);
         virtual int getHP()const ;
