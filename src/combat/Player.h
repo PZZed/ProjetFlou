@@ -14,7 +14,7 @@ namespace combat{
     class Player{
         public:
             Player();
-            virtual void attack(Enemy &p);
+            virtual int attack();
             virtual void addEnergy(int i);
             virtual void substractEnergy(int i);
             virtual void addHP(int i);
