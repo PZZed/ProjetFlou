@@ -8,15 +8,15 @@ namespace fuzzy{
     template <class T>
     class SugenoConclusion : public core::NaryExpression<T>{
     public:
-        SugenoConclusion(std::vector<T>);
+        SugenoConclusion(const std::vector<T>*);
         ~SugenoConclusion();
-        virtual T evaluate(std::vector<core::Expression<T>>)const;
+        virtual T evaluate(const std::vector<core::Expression<T>*>*)const;
     private:
-        std::vector<T> coeff;
+       const std::vector<T>* coeff;
     };
 
     template<class T>
-    SugenoConclusion<T>::SugenoConclusion(std::vector<T> tab) : coeff(tab){}
+    SugenoConclusion<T>::SugenoConclusion(const std::vector<T>* tab) : coeff(tab){}
 
     template<class T>
     SugenoConclusion<T>::~SugenoConclusion() {
@@ -24,10 +24,10 @@ namespace fuzzy{
     }
 
     template <class T>
-    T SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>> operande) const{
+    T SugenoConclusion<T>::evaluate(const std::vector<core::Expression<T>*>* operande) const{
         T z = 0;
-        typename std::vector<const core::Expression<T>*>::const_iterator itExp = operande->begin();
-        for(typename std::vector<T>::const_iterator it;it !=coeff->end()&&itExp!=operande->end();it++,itExp++){
+        typename std::vector<core::Expression<T>*>::const_iterator itExp = operande->begin();
+        for(typename std::vector<T>::const_iterator it=coeff->begin();it !=coeff->end()&&itExp!=operande->end();it++,itExp++){
             T eval = (*it)->evaluate();
             z+=(*itExp)* eval;
         }
