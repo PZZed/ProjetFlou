@@ -32,7 +32,7 @@ void combat::Player::substractEnergy(int i){
 }
 
 void combat::Player::addHP(int i) {
-    hp-=i;
+    hp+=i;
     if(hp >100){
         hp=100;
     }
