@@ -10,10 +10,11 @@ combat::Enemy::Enemy() {
     energy=200;
 }
 
-void combat::Enemy::attack(Player& p){
-    srand (time(NULL));
+int combat::Enemy::attack(){
+    srand (time(nullptr));
     int damage = rand() % 10 + 10;
-    p.substractHP(damage);
+    substractEnergy(30);
+    return damage;
 }
 
 void combat::Enemy::addEnergy(int i){
@@ -45,11 +46,12 @@ int combat::Enemy::getEnergy(){
     return energy;
 }
 
-/*void combat::Enemy::makeDecision(Player & p , float decisionp, float decisione ){
+int combat::Enemy::makeDecision( float decisionp, float decisione ){
     if(decisionp < 0.5){
         addEnergy(50);
     }
     else{
-        attack(p);
+        return attack();
     }
-}*/
+    return 0;
+}

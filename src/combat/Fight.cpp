@@ -76,26 +76,26 @@ void combat::Fight::startFight(){
 
     while(e.getHP()>0 || p.getHP()>0){
 
-        std::cout << "votre energie=\"" << p.getEnergy() << "\" votre santé=\"" << p.getHP() << "\"" ;
-        std::cout << "l\'ennemie energie=\"" << e.getEnergy() << "\" et sa santé=\"" << e.getHP() << "\" \n ";
-
-        std::cout << "que voulez vous faire ?";
-        std::cout << "1.attaquer";
-        std::cout << "2.se soigner";
+        std::cout << "votre energie=\"" << p.getEnergy() << "\" votre sant" <<char (0x82) << "=\"" << p.getHP() << "\" " << endl;
+        std::cout << "l\'ennemie energie=\"" << e.getEnergy() << "\" et sa sant" <<char (0x82) << "=\"" << e.getHP() << "\" " << endl;
+        std::cout << endl;
+        std::cout << "que voulez vous faire ?" << endl;
+        std::cout << "1.attaquer" << endl;
+        std::cout << "2.se soigner" << endl;
         std::string choix;
         std::cin >> choix;
         if(choix == "1"){
-            p.attack(e);
+            e.substractHP(p.attack());
         }
         else if(choix == "2"){
             p.addHP(30);
         }
 
 
-       // e.makeDecision(p,(float)valp->evaluate(),(float)vale->evaluate());
+        p.substractHP(e.makeDecision((float)valp->evaluate(),(float)vale->evaluate()));
 
-        p.addEnergy(15);
-        e.addEnergy(15);
+        p.addEnergy(5);
+        e.addEnergy(5);
 
     }
 
