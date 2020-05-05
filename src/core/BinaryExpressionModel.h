@@ -19,12 +19,12 @@ namespace core{
 
 
     public:
-        BinaryExpressionModel(Expression<T>* left,Expression<T>* right, BinaryExpression<T>* ope);
+        BinaryExpressionModel( Expression<T>* left, Expression<T>* right, BinaryExpression<T>* ope);
 
         virtual ~BinaryExpressionModel();
         virtual BinaryExpression<T>* getOperateur();
         virtual T evaluate()const;
-        virtual T evaluate(Expression<T>* l,Expression<T>* r)const;
+        virtual T evaluate(const Expression<T>* l,const Expression<T>* r)const;
     };
 
     template<class T>
@@ -34,14 +34,14 @@ namespace core{
     }
 
     template<class T>
-    BinaryExpressionModel<T>::BinaryExpressionModel( Expression<T>* left, Expression<T>* right, BinaryExpression<T>* ope):left(left), right(right),ope(ope) {}
+    BinaryExpressionModel<T>::BinaryExpressionModel(Expression<T>* left,Expression<T>* right, BinaryExpression<T>* ope):left(left), right(right),ope(ope) {}
 
     template<class T>
     BinaryExpressionModel<T>::~BinaryExpressionModel() {
     }
 
     template<class T>
-    T BinaryExpressionModel<T>::evaluate(Expression<T>* l, Expression<T>* r) const {
+    T BinaryExpressionModel<T>::evaluate(const Expression<T>* l, const Expression<T>* r) const {
         if (ope != nullptr)
             return ope->evaluate(l, r);
     }
