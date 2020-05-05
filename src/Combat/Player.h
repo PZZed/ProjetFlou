@@ -7,24 +7,25 @@
 
 namespace Combat{
     class Player{
-    public:
-        Ennemy();
-        virtual void attack(Player p);
-        virtual void addEnergy(int i);
-        virtual void substactEnergy(int i);
-        virtual void addHP(int i);
-        virtual void substractHP(int i);
-        virtual int getHP();
-        virtual int getEnergy;
+        public:
+            Player();
+            virtual void attack(Player p);
+            virtual void addEnergy(int i);
+            virtual void substactEnergy(int i);
+            virtual void addHP(int i);
+            virtual void substractHP(int i);
+            virtual int getHP();
+            virtual int getEnergy;
 
 
 
-    private:
-        int hp;
-        int energy;
+        private:
+            int hp;
+            int energy;
 
 
     };
+    
     Player::Player(){
         hp=100;
         energy=200;
