@@ -120,5 +120,7 @@ int main() {
     combat::Enemy ene;
     combat::Fight fight("",pla,ene);
 
+    fight.startFight();
+
     return 0;
 }

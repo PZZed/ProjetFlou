@@ -1,5 +1,11 @@
+#ifndef FUZZYFACTORY_H
+#define FUZZYFACTORY_H
+
+
 #include "../core/ExpressionFactory.h"
 #include "../core/UnaryShadowExpression.h"
+
+
 
 #include "Is.h"
 #include "And.h"
@@ -151,3 +157,5 @@ namespace fuzzy{
                                   Not<T> *_not) : and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),sugenoDefuzz(new NaryShadowExpression<T>(_sugDefuzz)),sugenoCcl(new NaryShadowExpression<T>(_sugCcl)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not)) {}
 
 }
+
+#endif
