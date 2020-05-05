@@ -11,18 +11,22 @@ namespace calculate{
 
     class Execute {
     public:
-        Execute();
+        Execute(std::string instr);
+        virtual ~Execute();
         void  exe();
 
     private:
         std::string instr;
 
+
     };
 }
 
+
+
 bool isOperator(const std::string &c)
 {
-    return (c == "+" || c == "-" || c == "*" || c == "/" || c == "^");
+    return (c == "+" || c == "-" || c == "*" );
 }
 
 #endif //PROJETFLOU_EXECUTE_H
