@@ -16,22 +16,26 @@
 #include "../fuzzy/CogDefuzz.h"
 #include "../fuzzy/ThenMin.h"
 #include "../fuzzy/AggMax.h"
+#include "../combat/Player.h"
+#include "../combat/Enemy.h"
+
 
 using namespace fuzzy;
 using namespace core;
+
+
+
 namespace combat{
     class Fight{
         public :
-            Fight(std::string statFile);
+            Fight(std::string statFile,  Player &p, Enemy &e);
             virtual ~Fight();
             void startFight();
 
     private:
         std::string statFile;
-        Ennemy *e;
-        Player *p;
-
-
+        Enemy & e;
+        Player & p;
     };
 
 
