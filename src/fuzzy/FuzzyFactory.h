@@ -20,7 +20,6 @@ namespace fuzzy{
         public:
             FuzzyFactory(And<T>*,Or<T>*,Then<T>*,MamdaniDeFuzz<T>*,Agg<T>*,Not<T>*);
             FuzzyFactory(And<T>*,Or<T>*,Then<T>*,SugenoDefuzz<T>*,SugenoConclusion<T>*,Agg<T>*,Not<T>*);
-
             virtual ~FuzzyFactory();
             virtual Expression<T>* newAnd(Expression<T>* l, Expression<T>* r);
             virtual Expression<T>* newOr(Expression<T>* l, Expression<T>* r);
@@ -149,6 +148,6 @@ namespace fuzzy{
 
     template<class T>
     FuzzyFactory<T>::FuzzyFactory(And<T> *_and, Or<T> *_or, Then<T> *_then, SugenoDefuzz<T> *_sugDefuzz, SugenoConclusion<T> *_sugCcl, Agg<T> *_agg,
-                                  Not<T> *_not) : and_(_and),or_(_or),then_(_then),sugenoDefuzz(_sugDefuzz),sugenoCcl(_sugCcl),agg_(_agg),not_(_not) {}
+                                  Not<T> *_not) : and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),sugenoDefuzz(new NaryShadowExpression<T>(_sugDefuzz)),sugenoCcl(new NaryShadowExpression<T>(_sugCcl)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not)) {}
 
 }

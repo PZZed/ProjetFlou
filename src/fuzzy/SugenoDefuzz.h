@@ -19,13 +19,13 @@ namespace fuzzy{
         public:
             SugenoDefuzz();
             virtual ~SugenoDefuzz();
-            virtual T evaluate(std::vector<const core::Expression<T>*>*)const ;
+            virtual T evaluate(const std::vector<core::Expression<T>*>*)const ;
         private:
             const std::vector<T> *coeff;
     };
 
     template <class T>
-    T SugenoDefuzz<T>::evaluate(std::vector<const core::Expression<T>*>*operandes)const{
+    T SugenoDefuzz<T>::evaluate(const std::vector< core::Expression<T>*>*operandes)const{
         typename std::vector<const core::Expression<T>*>::const_iterator it;
         T numerateur = 0;
         T denumerateur = 0;
