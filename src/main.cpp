@@ -38,14 +38,14 @@ int main() {
     SugenoConclusion<float> opSugCcl(&coefficient);
     //todo rename to fuzzyExpressionFactory
     FuzzyFactory<float> f(&opAnd,&opOr,&opThen,&opDefuzz,&opAgg,&opNot);
-    IsTriangle<float> poor(-5,0,5);
-    IsTriangle<float> good(0,5,10);
-    IsTriangle<float> excellent(5,10,15);
+    IsGaussian<float> poor(0, 1);
+    IsGaussian<float> good(5, 1);
+    IsGaussian<float> excellent(10, 1);
     IsTrapeze<float> rancid(0, 0, 1, 3);
     IsTrapeze<float> delicious(7, 9, 10, 10);
     IsTriangle<float> cheap(0,5,10);
-    IsTriangle<float> average(10,15,20);
-    IsTriangle<float> generous(20,25,30);
+    IsTriangle<float> average(7.5,12.5,17.5);
+    IsTriangle<float> generous(15,20,25);
     ValueModel<float> service(0);
     ValueModel<float> food(0);
     ValueModel<float> tips(0);
@@ -115,7 +115,7 @@ int main() {
     Expression<float> *system2 = factorySugeno.newSugenoDefuzz(&regle);
 
     // *****************************************************************************************************************
-    /*while(true)
+    while(true)
     {
         cout << "service : ";cin >> s;
         service.setValue(s);
@@ -123,7 +123,7 @@ int main() {
         food.setValue(s);
         cout << "Mamdani tips -> " << system->evaluate() << endl;
         cout << "Sugeno tips -> " << system2->evaluate() << endl;
-    }*/
+    }
     combat::Player pla;
     combat::Enemy ene;
     combat::Fight fight("",pla,ene);
