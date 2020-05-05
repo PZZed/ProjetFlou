@@ -7,10 +7,19 @@
 
 #include <string>
 #include <iostream>
+#include "../fuzzy/IsTriangle.h"
+#include "../core/ValueModel.h"
+#include "../fuzzy/FuzzyFactory.h"
+#include "../fuzzy/NotMinus1.h"
+#include "../fuzzy/OrMax.h"
+#include "../fuzzy/AndMin.h"
+#include "../fuzzy/CogDefuzz.h"
+#include "../fuzzy/ThenMin.h"
+#include "../fuzzy/AggMax.h"
 
-
+using namespace fuzzy;
+using namespace core;
 namespace combat{
-
     class Fight{
         public :
             Fight(std::string statFile);
@@ -27,8 +36,8 @@ namespace combat{
 
     Fight::Fight(std::string statFile): statFile(statFile) {
 
-        e = new ennemy(100,200,10,10);
-        p = new player(100,200,10,10);
+        e = new Ennemy(100,200,10,10);
+        p = new Player(100,200,10,10);
 
     }
 
@@ -51,23 +60,30 @@ namespace combat{
         ValueModel<float> Phealth(0);
         ValueModel<float> Penergy(0);
         ValueModel<float> Ehealth(0);
-        ValueModel<float> Penergy(0);
+        ValueModel<float> Eenergy(0);
+        NotMinus1<float> opNot;
+        AndMin<float> opAnd;
+        OrMax<float> opOr;
+        ThenMin<float> opThen;
+        CogDeFuzz<float> opDefuzz(0,200,1);
+        AggMax<float> opAgg;
+        FuzzyFactory<float> f(&opAnd,&opOr,&opThen,&opDefuzz,&opAgg,&opNot);
 
         Expression<float> *r1 =
                         f.newAgg(
                                 f.newAgg(
                                         f.newThen(
-                                                 f.newIs(&Phealth,&critcical),
-                                                 f.newIs(&Penergy,&exhausted)
+                                                 f.newIs(&critcical,&Phealth),
+                                                 f.newIs(&exhausted,&Penergy)
                                         ),
                                         f.newThen(
-                                                f.newIs(&Phealth,&wounded),
-                                                f.newIs(&Penergy,&tired)
+                                                f.newIs(&wounded,&Phealth),
+                                                f.newIs(&tired,&Penergy)
                                         )
                                 ),
                         f.newThen(
-                                f.newIs(&Phealth,&good),
-                                f.newIs(&Penergy,&excellent)
+                                f.newIs(&good,&Phealth),
+                                f.newIs(&excellent,&Penergy)
                         )
                         )  ;
 
@@ -75,17 +91,17 @@ namespace combat{
                 f.newAgg(
                         f.newAgg(
                                 f.newThen(
-                                        f.newIs(&Ehealth,&critcical),
-                                        f.newIs(&Eenergy,&exhausted)
+                                        f.newIs(&critcical,&Ehealth),
+                                        f.newIs(&exhausted,&Eenergy)
                                 ),
                                 f.newThen(
-                                        f.newIs(&Ehealth,&wounded),
-                                        f.newIs(&Eenergy,&tired)
+                                        f.newIs(&wounded,&Ehealth),
+                                        f.newIs(&tired,&Eenergy)
                                 )
                         ),
                         f.newThen(
-                                f.newIs(&Ehealth,&good),
-                                f.newIs(&Eenergy,&excellent)
+                                f.newIs(&good,&Ehealth),
+                                f.newIs(&excellent,&Eenergy)
                         )
                 )  ;
 
