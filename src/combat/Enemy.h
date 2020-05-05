@@ -5,7 +5,7 @@
 #ifndef PROJETFLOU_ENEMY_H
 #define PROJETFLOU_ENEMY_H
 #include <stdio.h>      /* printf, scanf, puts, NULL */
-#include <stdlib.h>     /* srand, rand */
+#include <cstdlib>     /* srand, rand */
 #include <time.h>       /* time */
 #include "../combat/Player.h"
 #include "Player.h"

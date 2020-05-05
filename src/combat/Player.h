@@ -5,7 +5,7 @@
 #ifndef PROJETFLOU_PLAYER_H
 #define PROJETFLOU_PLAYER_H
 #include <stdio.h>      /* printf, scanf, puts, NULL */
-#include <stdlib.h>     /* srand, rand */
+#include <cstdlib>     /* srand, rand */
 #include <time.h>       /* time */
 #include "Enemy.h"
 
