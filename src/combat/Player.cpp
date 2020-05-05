@@ -13,7 +13,7 @@ combat::Player::Player() {
 int combat::Player::attack(){
     srand (time(nullptr));
     int damage = rand() % 10 + 10;
-    substractEnergy(30);
+    substractEnergy(80);
     return damage;
 }
 
@@ -32,7 +32,7 @@ void combat::Player::substractEnergy(int i){
 }
 
 void combat::Player::addHP(int i) {
-    hp-=i;
+    hp+=i;
     if(hp >100){
         hp=100;
     }

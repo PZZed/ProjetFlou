@@ -2,6 +2,7 @@
 // Created by pz on 05/05/2020.
 //
 
+#include <iostream>
 #include "Enemy.h"
 #include "Player.h"
 
@@ -13,7 +14,7 @@ combat::Enemy::Enemy() {
 int combat::Enemy::attack(){
     srand (time(nullptr));
     int damage = rand() % 10 + 10;
-    substractEnergy(30);
+    substractEnergy(80);
     return damage;
 }
 
@@ -46,9 +47,14 @@ int combat::Enemy::getEnergy(){
     return energy;
 }
 
-int combat::Enemy::makeDecision( float decisionp, float decisione ){
-    if(decisionp < 0.5){
+int combat::Enemy::makeDecision(  float decisione ){
+    std::cout << std::endl << decisione << std::endl;
+    if(decisione <= 2){
         addEnergy(50);
+    }
+    else if(decisione <= 4 ){
+        return attack();
+        //rien mais doit block
     }
     else{
         return attack();
