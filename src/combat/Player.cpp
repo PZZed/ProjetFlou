@@ -2,14 +2,15 @@
 // Created by pz on 05/05/2020.
 //
 
+
 #include "Player.h"
 
-combat::Player::Player(int i, int i1, int i2, int i3) {
+combat::Player::Player() {
     hp=100;
     energy=200;
 }
 
-void combat::Player::attack(Enemy p ){
+void combat::Player::attack(Enemy& p ){
     srand (time(NULL));
     int damage = rand() % 10 + 10;
     p.substractHP(damage);

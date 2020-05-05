@@ -21,7 +21,7 @@ namespace fuzzy{
         virtual std::vector<T> getXAxis()const;
         virtual std::vector<T> getYAxis()const;
         virtual ostream& printShape(ostream&);
-        static Shape<T> buildShape(const T &min, const T &max, const T &step,core::Expression<T>*l, core::Expression<T> *);
+        static Shape<T> buildShape(const T &min, const T &max, const T &step,const core::Expression<T>*l,const  core::Expression<T> *);
 
     private:
         std::vector<T> xAxis;
@@ -30,7 +30,7 @@ namespace fuzzy{
     };
 
     template<class T>
-    Shape<T> Shape<T>::buildShape(const T &min, const T &max, const T &step, core::Expression<T>*l ,core::Expression<T> *r) {
+    Shape<T> Shape<T>::buildShape(const T &min, const T &max, const T &step,const  core::Expression<T>*l ,const core::Expression<T> *r) {
         std::vector<T> x, y;
         T toSetAgain = l->evaluate();
         auto tmp = (core::ValueModel<T>*)l;

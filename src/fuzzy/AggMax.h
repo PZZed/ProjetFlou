@@ -17,11 +17,11 @@ namespace fuzzy{
         AggMax();
 
     public:
-        virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r)const;
+        virtual T evaluate(const core::Expression<T>* l,const core::Expression<T>* r)const;
     };
 
     template<class T>
-    T AggMax<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const {
+    T AggMax<T>::evaluate(const core::Expression<T>* l,const core::Expression<T>* r) const {
         return l->evaluate() > r->evaluate() ? l->evaluate() : r->evaluate();
     }
 

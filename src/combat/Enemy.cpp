@@ -3,13 +3,14 @@
 //
 
 #include "Enemy.h"
+#include "Player.h"
 
-combat::Enemy::Enemy(int i, int i1, int i2, int i3) {
+combat::Enemy::Enemy() {
     hp=100;
     energy=200;
 }
 
-void combat::Enemy::attack(Player p){
+void combat::Enemy::attack(Player& p){
     srand (time(NULL));
     int damage = rand() % 10 + 10;
     p.substractHP(damage);
@@ -44,11 +45,11 @@ int combat::Enemy::getEnergy(){
     return energy;
 }
 
-void combat::Enemy::makeDecision(Player p , double decision){
-    if(decision < 0.5){
+/*void combat::Enemy::makeDecision(Player & p , float decisionp, float decisione ){
+    if(decisionp < 0.5){
         addEnergy(50);
     }
     else{
         attack(p);
     }
-}
+}*/

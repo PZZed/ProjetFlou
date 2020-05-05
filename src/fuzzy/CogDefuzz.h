@@ -17,12 +17,12 @@ namespace fuzzy{
         CogDeFuzz(const T& min,const T& max,const T& step);
         virtual ~CogDeFuzz() {};
         virtual T defuzzification(const Shape<T> &s)const;
-        virtual T evaluate(core::Expression<T> * l, core::Expression<T> * r) const;
+        virtual T evaluate(const core::Expression<T> * l, const core::Expression<T> * r) const;
     };
 
 
     template<class T>
-    T CogDeFuzz<T>::evaluate(core::Expression<T> *l, core::Expression<T> *r) const {
+    T CogDeFuzz<T>::evaluate(const core::Expression<T> *l,const core::Expression<T> *r) const {
         Shape<T> s = Shape<T>::buildShape(this->getMin(),this->getMax(),this->getStep(),l,r);
         return defuzzification(s);
     }

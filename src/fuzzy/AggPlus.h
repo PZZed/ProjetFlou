@@ -16,11 +16,11 @@ namespace fuzzy{
         AggPlus();
 
     public:
-       virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r)const;
+       virtual T evaluate(const core::Expression<T>* l,const core::Expression<T>* r)const;
     };
 
     template<class T>
-    T AggPlus<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const {
+    T AggPlus<T>::evaluate(const core::Expression<T>* l,const core::Expression<T>* r) const {
         return l->evaluate() + r->evaluate();
     }
 
