@@ -30,9 +30,8 @@ int main() {
     SugenoThen<float> opSugThen;
     SugenoDefuzz<float> opSugDefuzz;
     vector<float> coefficient;
-    coefficient.push_back(1);
-    coefficient.push_back(2);
-    coefficient.push_back(3);
+    coefficient.push_back(0.5);
+    coefficient.push_back(0.5);
 
     SugenoConclusion<float> opSugCcl(&coefficient);
     //todo rename to fuzzyExpressionFactory
@@ -69,24 +68,41 @@ int main() {
     // *****************************************************************************************************************
 
     FuzzyFactory<float> factorySugeno(&opAnd,&opOr,&opSugThen,&opSugDefuzz,&opSugCcl,&opAgg,&opNot);
-    vector<Expression<float>*>* regle;
-    regle->push_back(f.newAgg(
-            f.newAgg(
-                    f.newThen(
-                            f.newIs(&poor,&service),
-                            f.newIs(&cheap,&tips)
+    vector<Expression<float>*> regle;
+
+    vector<Expression<float>*> foodvec;
+    foodvec.push_back(&food);
+
+    vector<Expression<float>*> servicevec;
+
+    servicevec.push_back(&service);
+    vector<Expression<float>*> servicefoodvec;
+    servicefoodvec.push_back(&service);
+    servicefoodvec.push_back(&food);
+
+
+
+    regle.push_back(
+            factorySugeno.newThen(
+                    factorySugeno.newIs(&poor,&service),
+                    factorySugeno.newSugenoConclusion(&servicevec)
+                    ));
+
+    regle.push_back(
+            factorySugeno.newThen(
+                    factorySugeno.newIs(&good,&service),
+                    factorySugeno.newSugenoConclusion(&servicevec)
+            ));
+    regle.push_back(
+            factorySugeno.newThen(
+                    factorySugeno.newOr(
+                            factorySugeno.newIs(&excellent,&service),
+                            factorySugeno.newIs(&excellent,&food)
                     ),
-                    f.newThen(
-                            f.newIs(&good,&service),
-                            f.newIs(&average,&tips)
-                    )
-            ),
-            f.newThen(
-                    f.newIs(&excellent,&service),
-                    f.newIs(&generous,&tips)
-            )
-    ));
-    Expression<float> *system2 = f.newDefuzz(&tips, r, 0, 25, 1);
+                    factorySugeno.newSugenoConclusion(&servicefoodvec)
+            ));
+
+    Expression<float> *system2 = factorySugeno.newSugenoDefuzz(&regle);
 
     // *****************************************************************************************************************
     while(true)
