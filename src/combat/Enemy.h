@@ -22,7 +22,7 @@ namespace combat{
         virtual void substractHP(int i);
         virtual int getHP();
         virtual int getEnergy();
-        int makeDecision( float decisionp, float descisione);
+        int makeDecision( float descisione);
 
 
     private:

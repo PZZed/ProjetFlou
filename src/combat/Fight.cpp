@@ -27,11 +27,9 @@ void combat::Fight::startFight(){
 
     // les valeurs
 
-    ValueModel<float> Phealth(0);
-    ValueModel<float> Penergy(0);
+
     ValueModel<float> Ehealth(0);
     ValueModel<float> Eenergy(0);
-    ValueModel<float> actionp(0);
     ValueModel<float> actione(0);
     NotMinus1<float> opNot;
     AndMin<float> opAnd;
@@ -41,20 +39,6 @@ void combat::Fight::startFight(){
     AggMax<float> opAgg;
     FuzzyFactory<float> f(&opAnd,&opOr,&opThen,&opDefuzz,&opAgg,&opNot);
 
-    Expression<float> *r1 =
-        f.newAgg(
-                        f.newThen(
-                                f.newIs(&lowHealth, &Phealth),
-                                f.newIs(&spell, &actionp)
-                        ),
-                        f.newThen(
-                                f.newAnd(
-                                        f.newIs(&highHealth, &Phealth),
-                                        f.newIs(&highEnergy, &Penergy)
-                                ),
-                                f.newIs(&attack,&actionp)
-                        )
-                );
 
     Expression<float> *r2 =
             f.newAgg(
@@ -77,14 +61,13 @@ void combat::Fight::startFight(){
                     )
             );
 
-    Expression<float> *valp = f.newDefuzz(&actionp, r1, 0, 6, 0.1);
+
     Expression<float> *vale = f.newDefuzz(&actione, r2, 0, 6, 0.1);
 
     while(e.getHP()>0 && p.getHP()>0){
 
         //Update fuzzy
-        Phealth.setValue(p.getHP());
-        Penergy.setValue(p.getEnergy());
+
         Ehealth.setValue(e.getHP());
         Eenergy.setValue(e.getEnergy());
 
@@ -104,10 +87,10 @@ void combat::Fight::startFight(){
         }
 
 
-        p.substractHP(e.makeDecision((float)valp->evaluate(),(float)vale->evaluate()));
+        p.substractHP(e.makeDecision((float)vale->evaluate()));
 
-        p.addEnergy(5);
-        e.addEnergy(5);
+        p.addEnergy(30);
+        e.addEnergy(30);
 
     }
 
