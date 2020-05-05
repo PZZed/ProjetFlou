@@ -2,22 +2,23 @@
 // Created by pisel on 05/05/2020.
 //
 
-#ifndef PROJETFLOU_ENNEMY_H
-#define PROJETFLOU_ENNEMY_H
+#ifndef PROJETFLOU_ENEMY_H
+#define PROJETFLOU_ENEMY_H
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include "Player.h"
 
 namespace Combat{
-    class Ennemy{
+    class Enemy{
     public:
-        Ennemy();
+        Enemy();
         virtual void attack(Player p);
         virtual void addEnergy(int i);
-        virtual void substactEnergy();
+        virtual void substractEnergy(int i);
         virtual void substractHP(int i);
         virtual int getHP();
-        virtual int getEnergy;
+        virtual int getEnergy();
         virtual void makeDecision(Player p , double decision);
 
 
@@ -27,47 +28,47 @@ namespace Combat{
 
 
     };
-    Ennemy::Ennemy(){
+    Enemy::Enemy(){
         hp=100;
         energy=200;
     }
 
-    void Ennemy::attack(Player p){
+    void Enemy::attack(Player p){
         srand (time(NULL));
-        damage = rand() % 10 + 10;
-        p.substactHP(damage);
+         int damage = rand() % 10 + 10;
+        p.substractHP(damage);
     }
 
-    void Ennemy::addEnergy(int i){
+    void Enemy::addEnergy(int i){
         energy +=i;
         if (energy>200){
             energy=200;
         }
     }
 
-    void Ennemy::substractEnergy(int i){
+    void Enemy::substractEnergy(int i){
         energy-=i;
         if(energy < 0){
             energy=0;
         }
     }
 
-    void Ennemy::substractHP(int i) {
+    void Enemy::substractHP(int i) {
         hp-=i;
         if(hp < 0){
             hp=0;
         }
     }
 
-    int Ennemy::getHP() {
+    int Enemy::getHP() {
         return hp;
     }
 
-    int Ennemy::getEnergy(){
+    int Enemy::getEnergy(){
         return energy;
     }
 
-    void Ennemy::makeDecision(Player p , double decision){
+    void Enemy::makeDecision(Player p , double decision){
         if(decision < 0.5){
             addEnergy(50);
         }
@@ -75,6 +76,8 @@ namespace Combat{
             attack(p);
         }
     }
+
+
 }
 
-#endif //PROJETFLOU_ENNEMY_H
+#endif //PROJETFLOU_ENEMY_H
