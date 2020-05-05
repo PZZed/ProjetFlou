@@ -19,49 +19,87 @@ namespace combat{
 
     private:
         std::string statFile;
-        Ennemy e;
-        Player p;
+        Ennemy *e;
+        Player *p;
 
 
     };
 
     Fight::Fight(std::string statFile): statFile(statFile) {
-        //this.e = new ennemy(100,200,10,10);
-        //this.p = new player(100,200,10,10);
+
+        e = new ennemy(100,200,10,10);
+        p = new player(100,200,10,10);
 
     }
 
     void Fight::startFight(){
 
-        // crée courbe fuzzy
 
-        // pv 0->100
-        // energie 0->200
-        // taper -> 20 energie
-        // heal -> 40 energie
-        // chaque tour +15 energie
-        // attendre
-        // si pas énergie attaque échou
-        //
+
+        //les pdvs
+        IsTriangle<float> critcical(0,0,40);
+        IsTriangle<float> wounded(30,50,80);
+        IsTriangle<float> excellent(70,100,100);
+
+        //l'energie
+        IsTriangle<float> exhausted(0,0,40);
+        IsTriangle<float> tired(80,100,140);
+        IsTriangle<float> excellent(100,150,200);
+
+        // les valeurs
+
+        ValueModel<float> Phealth(0);
+        ValueModel<float> Penergy(0);
+        ValueModel<float> Ehealth(0);
+        ValueModel<float> Penergy(0);
+
+        Expression<float> *r =
+                f.newAgg(
+                        f.newAgg(
+                                f.newAgg(
+                                        f.newThen(
+                                                 f.newIs(&Phealth,&critcical),
+                                                 f.newIs(&Penergy,&exhausted)
+                                        ),
+                                        f.newThen(
+                                                f.newIs(&Ehealth,&critcical),
+                                                f.newIs(&Eenergy,&exhausted)
+                                        )
+                                ),
+                        f.newThen(
+                                f.newIs(&Phealth,&wounded),
+                                f.newIs(&Penergy,&tired)
+                        ),
+                        f.newIs(&Ehealth,&wounded),
+                        f.newIs(&Eenergy,&tired)
+                );
+
+        Expression<float> *vale = f.newDefuzz(&Eenergie, r, 0, 200, 1);
+        Expression<float> *valh = f.newDefuzz(&Ehealth, r, 0, 100, 1);
 
         while(e.getHP()>0 || p.getHP()>0){
-                // fuzzy evaluate avec joueur.pv, joueur.energy, ennemy.pv, ennemy.energy
 
-                // show fuzzy stats en fonction des pv et de l'énergie de chacuns
+                std::cout << "votre energie=\"" << p->getEnergy() << "\" votre santé=\"" << p->getHealth() << "\"" ;
+                std::cout << "l\'ennemie energie=\"" << e->getEnergy() << "\" et sa santé=\"" << e->getHealth() << "\" \n ";
 
-                // cout << que voulez vous faire ?
-                // cout << 1.attaquer
-                // cout << 2.se soigner
+                std::cout << "que voulez vous faire ?"
+                std::cout << "1.attaquer"
+                std::cout << "2.se soigner"
+                std::string choix;
+                std::cin >> choix;
+                if(choix == "1"){
+                    p.attack(e);
+                }
+                else if(choix == "2"){
+                    p.heal();
+                }
 
 
-                // cin >>  chaine
-                // switch sur chaine
-                    //if chaine == heal -> player.heal
-                    //if chaine == attack -> player.attack(ennemy)
-               // ennemy.decision(porcentcritiqueenergy,pourcentblesserenergy,pourcentGoodenergy,joueur)
+                e->decision(valp->evaluate(),valh->evaluate(),p);
 
-                // votre energie : ""  votre energie : ""
-                // l'ennemie à  energie : ""  votre energie : ""
+                p->addEnergie(15);
+                e->addEnergie(15);
+
         }
 
 
