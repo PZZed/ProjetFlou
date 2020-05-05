@@ -42,7 +42,6 @@ namespace fuzzy{
         } else {
             return 1;
         }
-
     }
 }
 #endif //ISTRAPEZE_H

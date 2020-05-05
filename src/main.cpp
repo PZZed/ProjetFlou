@@ -41,6 +41,8 @@ int main() {
     IsTriangle<float> poor(-5,0,5);
     IsTriangle<float> good(0,5,10);
     IsTriangle<float> excellent(5,10,15);
+    IsTrapeze<float> rancid(0, 0, 1, 3);
+    IsTrapeze<float> delicious(7, 9, 10, 10);
     IsTriangle<float> cheap(0,5,10);
     IsTriangle<float> average(10,15,20);
     IsTriangle<float> generous(20,25,30);
@@ -51,7 +53,10 @@ int main() {
             f.newAgg(
                     f.newAgg(
                             f.newThen(
-                                    f.newIs(&poor,&service),
+                                    f.newOr(
+                                            f.newIs(&poor,&service),
+                                            f.newIs(&rancid, &food)
+                                            ),
                                     f.newIs(&cheap,&tips)
                             ),
                             f.newThen(
@@ -60,7 +65,10 @@ int main() {
                              )
                     ),
             f.newThen(
-                    f.newIs(&excellent,&service),
+                    f.newOr(
+                            f.newIs(&excellent,&service),
+                            f.newIs(&delicious, &food)
+                            ),
                     f.newIs(&generous,&tips)
                     )
     );

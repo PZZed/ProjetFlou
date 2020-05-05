@@ -2,6 +2,7 @@
 // Created by pz on 05/05/2020.
 //
 
+#include <iostream>
 #include "Enemy.h"
 #include "Player.h"
 
@@ -47,6 +48,7 @@ int combat::Enemy::getEnergy(){
 }
 
 int combat::Enemy::makeDecision( float decisionp, float decisione ){
+    std::cout << std::endl << decisionp << " - " << decisione << std::endl;
     if(decisionp < 0.5){
         addEnergy(50);
     }
