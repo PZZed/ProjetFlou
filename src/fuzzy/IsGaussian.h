@@ -1,3 +1,6 @@
+#ifndef ISGAUSSIAN_H
+#define ISGAUSSIAN_H
+
 #include <cmath>
 #include "Is.h"
 #include "../core/Expression.h"
@@ -25,3 +28,5 @@ namespace fuzzy{
     template<class T>
     IsGaussian<T>::IsGaussian(const T & variance, const T& ecartType) : variance(variance) , ecartType(ecartType) {}
 }
+
+#endif
