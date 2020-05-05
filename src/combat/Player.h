@@ -10,7 +10,7 @@
 #include "Enemy.h"
 
 
-namespace Combat{
+namespace combat{
     class Player{
         public:
             Player();

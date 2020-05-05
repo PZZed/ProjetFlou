@@ -144,6 +144,10 @@ namespace combat{
 
     }
 
+    Fight::~Fight() {
+        delete e;
+        delete p;
+    }
 
 
 }

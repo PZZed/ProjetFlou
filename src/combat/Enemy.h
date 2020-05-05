@@ -9,10 +9,11 @@
 #include <time.h>       /* time */
 #include "Player.h"
 
-namespace Combat{
+namespace combat{
     class Enemy{
     public:
         Enemy();
+        virtual ~Enemy(){}
         virtual void attack(Player p);
         virtual void addEnergy(int i);
         virtual void substractEnergy(int i);
