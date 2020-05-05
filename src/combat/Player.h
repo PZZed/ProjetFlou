@@ -13,7 +13,7 @@
 namespace combat{
     class Player{
         public:
-            Player();
+            Player(int i, int i1, int i2, int i3);
             virtual void attack(Enemy p );
             virtual void addEnergy(int i);
             virtual void substractEnergy(int i);
@@ -31,52 +31,7 @@ namespace combat{
 
     };
 
-    Player::Player(){
-        hp=100;
-        energy=200;
-    }
 
-    void Player::attack(Enemy p ){
-        srand (time(NULL));
-         int damage = rand() % 10 + 10;
-        p.substractHP(damage);
-    }
-
-    void Player::addEnergy(int i){
-        energy +=i;
-        if (energy>200){
-            energy=200;
-        }
-    }
-
-    void Player::substractEnergy(int i){
-        energy-=i;
-        if(energy < 0){
-            energy=0;
-        }
-    }
-
-    void Player::addHP(int i) {
-        hp-=i;
-        if(hp >100){
-            hp=100;
-        }
-    }
-
-    void Player::substractHP(int i) {
-        hp-=i;
-        if(hp < 0){
-            hp=0;
-        }
-    }
-
-    int Player::getHP() {
-        return hp;
-    }
-
-    int Player::getEnergy(){
-        return energy;
-    }
 
 }
 
