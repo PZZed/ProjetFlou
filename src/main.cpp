@@ -23,7 +23,7 @@ using namespace std;
 using namespace fuzzy;
 
 int main() {
-    NotMinus1<float> opNot;
+   /* NotMinus1<float> opNot;
     AndMin<float> opAnd;
     OrMax<float> opOr;
     ThenMin<float> opThen;
@@ -123,12 +123,12 @@ int main() {
         food.setValue(s);
         cout << "Mamdani tips -> " << system->evaluate() << endl;
         cout << "Sugeno tips -> " << system2->evaluate() << endl;
-    }
-    /*combat::Player pla;
+    }*/
+    combat::Player pla;
     combat::Enemy ene;
     combat::Fight fight("",pla,ene);
 
     fight.startFight();
-*/
+
     return 0;
 }

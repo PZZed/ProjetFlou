@@ -24,8 +24,10 @@ namespace core{
 
     template<class T>
     ExpressionFactory<T>::~ExpressionFactory() {
-        for(typename std::set<Expression<T>*>::iterator i = memory.begin(); i != memory.end(); i++){
+        for(typename std::set<Expression<T>*>::iterator i = memory.begin(); i != std::end(memory); i++){
+            memory.erase(i);
             delete *i;
+
         }
     }
 

@@ -19,9 +19,7 @@ namespace fuzzy{
     SugenoConclusion<T>::SugenoConclusion(const std::vector<T>* tab) : coeff(tab){}
 
     template<class T>
-    SugenoConclusion<T>::~SugenoConclusion() {
-        delete[] coeff;
-    }
+    SugenoConclusion<T>::~SugenoConclusion() { }
 
     template <class T>
     T SugenoConclusion<T>::evaluate(const std::vector<core::Expression<T>*>* operande) const{

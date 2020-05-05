@@ -108,7 +108,8 @@ namespace fuzzy{
 
     template<class T>
     FuzzyFactory<T>::FuzzyFactory(And<T> *_and, Or<T> *_or, Then<T> *_then, MamdaniDeFuzz<T> *_defuzz, Agg<T> *_agg, Not<T> *_not) :
-     and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),defuzz_(new BinaryShadowExpression<T>(_defuzz)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not))
+     and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),defuzz_(new BinaryShadowExpression<T>(_defuzz)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not)),sugenoCcl(nullptr),sugenoDefuzz(
+            nullptr)
     {}
 
     template<class T>
@@ -116,10 +117,13 @@ namespace fuzzy{
         delete or_;
         delete and_;
         delete then_;
-        delete defuzz_;
+        if(defuzz_!= nullptr)
+            delete defuzz_;
         delete agg_;
         delete not_;
+        if(sugenoCcl!= nullptr)
         delete sugenoCcl;
+        if(sugenoDefuzz!=nullptr)
         delete sugenoDefuzz;
     }
 
@@ -154,7 +158,8 @@ namespace fuzzy{
 
     template<class T>
     FuzzyFactory<T>::FuzzyFactory(And<T> *_and, Or<T> *_or, Then<T> *_then, SugenoDefuzz<T> *_sugDefuzz, SugenoConclusion<T> *_sugCcl, Agg<T> *_agg,
-                                  Not<T> *_not) : and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),sugenoDefuzz(new NaryShadowExpression<T>(_sugDefuzz)),sugenoCcl(new NaryShadowExpression<T>(_sugCcl)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not)) {}
+                                  Not<T> *_not) : and_(new BinaryShadowExpression<T>(_and)),or_(new BinaryShadowExpression<T>(_or)),then_(new BinaryShadowExpression<T>(_then)),sugenoDefuzz(new NaryShadowExpression<T>(_sugDefuzz)),sugenoCcl(new NaryShadowExpression<T>(_sugCcl)),agg_(new BinaryShadowExpression<T>(_agg)),not_(new UnaryShadowExpression<T>(_not)),defuzz_(
+            nullptr) {}
 
 }
 
