@@ -30,9 +30,9 @@ int main() {
     SugenoThen<float> opSugThen;
     SugenoDefuzz<float> opSugDefuzz;
     vector<float> coefficient;
-    coefficient.push_back(1);
-    coefficient.push_back(2);
-    coefficient.push_back(3);
+    coefficient.push_back(0.5);
+    coefficient.push_back(0.5);
+    coefficient.push_back(0.5);
 
     SugenoConclusion<float> opSugCcl(&coefficient);
     //todo rename to fuzzyExpressionFactory
@@ -81,23 +81,23 @@ int main() {
 
 
     regle.push_back(
-                    f.newThen(
-                            f.newIs(&poor,&service),
-                            f.newSugenoConclusion(&foodvec)
+            factorySugeno.newThen(
+                    factorySugeno.newIs(&poor,&service),
+                    factorySugeno.newSugenoConclusion(&foodvec)
                     ));
 
     regle.push_back(
-            f.newThen(
-                    f.newIs(&good,&service),
-                    f.newSugenoConclusion(&servicevec)
+            factorySugeno.newThen(
+                    factorySugeno.newIs(&good,&service),
+                    factorySugeno.newSugenoConclusion(&servicevec)
             ));
     regle.push_back(
-            f.newThen(
-                    f.newIs(&excellent,&service),
-                    f.newSugenoConclusion(&servicevec)
+            factorySugeno.newThen(
+                    factorySugeno.newIs(&excellent,&service),
+                    factorySugeno.newSugenoConclusion(&servicevec)
             ));
 
-    Expression<float> *system2 = f.newSugenoDefuzz(&regle);
+    Expression<float> *system2 = factorySugeno.newSugenoDefuzz(&regle);
 
     // *****************************************************************************************************************
     while(true)

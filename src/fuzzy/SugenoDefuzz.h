@@ -17,11 +17,10 @@ namespace fuzzy{
     class SugenoDefuzz : public core::NaryExpression<T>{
 
         public:
-            SugenoDefuzz();
-            virtual ~SugenoDefuzz();
+            SugenoDefuzz(){};
+            virtual ~SugenoDefuzz(){};
             virtual T evaluate(const std::vector<core::Expression<T>*>*)const ;
         private:
-            const std::vector<T> *coeff;
     };
 
     template <class T>
@@ -31,29 +30,22 @@ namespace fuzzy{
         T denumerateur = 0;
 
         for (; it != operandes->end(); it++){
-            core::BinaryExpressionModel<T>* bem = (core::BinaryExpressionModel<T>*)(*it);
-            core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*)bem->getOperateur();
-            SugenoThen<T>* sugthen = (SugenoThen<T>*)bse->getTarget();
+            auto* bem = (core::BinaryExpressionModel<T>*)(*it);
+            auto* bse = (core::BinaryShadowExpression<T>*)bem->getOperateur();
+            auto* sugthen = (SugenoThen<T>*)bse->getTarget();
             numerateur+=bem->evaluate();
             denumerateur+=sugthen->getPremisse();
         }
 
         if(denumerateur==0){ //Division par 0 impossible.
-
             return 0;
         }
         else
+            T tmp = numerateur/denumerateur;
             return numerateur/denumerateur;
-
     }
 
-    template<class T>
-    SugenoDefuzz<T>::SugenoDefuzz() {}
 
-    template<class T>
-    SugenoDefuzz<T>::~SugenoDefuzz() {
-        delete coeff;
-    }
 
 }
 

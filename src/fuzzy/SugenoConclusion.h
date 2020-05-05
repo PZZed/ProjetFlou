@@ -29,7 +29,7 @@ namespace fuzzy{
         typename std::vector<core::Expression<T>*>::const_iterator itExp = operande->begin();
         for(typename std::vector<T>::const_iterator it=coeff->begin();it !=coeff->end()&&itExp!=operande->end();it++,itExp++){
             T eval = (*itExp)->evaluate();
-            z+=(*it)* eval;
+            z+=(*it) * eval;
         }
         return z;
     }
