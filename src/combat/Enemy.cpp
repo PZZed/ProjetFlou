@@ -14,7 +14,7 @@ combat::Enemy::Enemy() {
 int combat::Enemy::attack(){
     srand (time(nullptr));
     int damage = rand() % 10 + 10;
-    substractEnergy(20);
+    substractEnergy(30);
     return damage;
 }
 
