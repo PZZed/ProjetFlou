@@ -106,8 +106,8 @@ void combat::Fight::startFight(){
 
         p.substractHP(e.makeDecision((float)valp->evaluate(),(float)vale->evaluate()));
 
-        p.addEnergy(5);
-        e.addEnergy(5);
+        p.addEnergy(30);
+        e.addEnergy(30);
 
     }
 
