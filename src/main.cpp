@@ -111,7 +111,8 @@ int main() {
         service.setValue(s);
         cout << "food : ";cin >> s;
         food.setValue(s);
-        cout << "tips -> " << system2->evaluate() << endl;
+        cout << "Mamdani tips -> " << system->evaluate() << endl;
+        cout << "Sugeno tips -> " << system2->evaluate() << endl;
     }
 
     return 0;

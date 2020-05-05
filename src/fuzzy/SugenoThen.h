@@ -14,7 +14,7 @@ namespace fuzzy{
     template <class T>
     class SugenoThen : public Then<T> {
     public:
-        virtual T evaluate(core::Expression<T>* l,core::Expression<T>* r)const ;
+        virtual T evaluate(const core::Expression<T>* l,const core::Expression<T>* r)const ;
         virtual T getPremisse()const;
         virtual void setPremisse(T);
     private:
@@ -22,7 +22,7 @@ namespace fuzzy{
     };
 
     template<class T>
-    T SugenoThen<T>::evaluate(core::Expression<T>* l, core::Expression<T>* r) const{
+    T SugenoThen<T>::evaluate(const core::Expression<T>* l,const core::Expression<T>* r) const{
         if(l==nullptr||r== nullptr){
             //pblm TODO exception ou un truc du genre
             std::cout << "PROBLEME " << std::endl;
