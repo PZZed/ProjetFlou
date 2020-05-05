@@ -69,24 +69,35 @@ int main() {
     // *****************************************************************************************************************
 
     FuzzyFactory<float> factorySugeno(&opAnd,&opOr,&opSugThen,&opSugDefuzz,&opSugCcl,&opAgg,&opNot);
-    vector<Expression<float>*>* regle;
-    regle->push_back(f.newAgg(
-            f.newAgg(
+    vector<Expression<float>*> regle;
+
+    vector<Expression<float>*> foodvec;
+    foodvec.push_back(&food);
+
+    vector<Expression<float>*> servicevec;
+
+    servicevec.push_back(&service);
+
+
+
+    regle.push_back(
                     f.newThen(
                             f.newIs(&poor,&service),
-                            f.newIs(&cheap,&tips)
-                    ),
-                    f.newThen(
-                            f.newIs(&good,&service),
-                            f.newIs(&average,&tips)
-                    )
-            ),
+                            f.newSugenoConclusion(&foodvec)
+                    ));
+
+    regle.push_back(
+            f.newThen(
+                    f.newIs(&good,&service),
+                    f.newSugenoConclusion(&servicevec)
+            ));
+    regle.push_back(
             f.newThen(
                     f.newIs(&excellent,&service),
-                    f.newIs(&generous,&tips)
-            )
-    ));
-    Expression<float> *system2 = f.newDefuzz(&tips, r, 0, 25, 1);
+                    f.newSugenoConclusion(&servicevec)
+            ));
+
+    Expression<float> *system2 = f.newSugenoDefuzz(&regle);
 
     // *****************************************************************************************************************
     while(true)
