@@ -2,6 +2,7 @@
 #include "Is.h"
 #include "../core/Expression.h"
 
+
 namespace fuzzy{
     template <class T>
     class IsGaussian : Is<T>{
