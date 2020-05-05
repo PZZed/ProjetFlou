@@ -16,13 +16,13 @@ namespace combat{
     public:
         Enemy();
         virtual ~Enemy(){}
-        virtual void attack(combat::Player & p);
+        virtual int attack();
         virtual void addEnergy(int i);
         virtual void substractEnergy(int i);
         virtual void substractHP(int i);
         virtual int getHP();
         virtual int getEnergy();
-        //virtual void makeDecision(Player& p , float decisionp, float descisione);
+        int makeDecision( float decisionp, float descisione);
 
 
     private:
