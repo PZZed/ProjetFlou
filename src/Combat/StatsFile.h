@@ -1,0 +1,8 @@
+//
+// Created by pisel on 05/05/2020.
+//
+
+#ifndef PROJETFLOU_STATSFILE_H
+#define PROJETFLOU_STATSFILE_H
+
+#endif //PROJETFLOU_STATSFILE_H
