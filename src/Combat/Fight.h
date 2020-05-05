@@ -34,8 +34,6 @@ namespace combat{
 
     void Fight::startFight(){
 
-
-
         //les pdvs
         IsTriangle<float> critcical(0,0,40);
         IsTriangle<float> wounded(30,50,80);
@@ -47,7 +45,6 @@ namespace combat{
         IsTriangle<float> excellent(100,150,200);
 
         // les valeurs
-
         ValueModel<float> Phealth(0);
         ValueModel<float> Penergy(0);
         ValueModel<float> Ehealth(0);
@@ -102,6 +99,7 @@ namespace combat{
                 std::cout << "2.se soigner"
                 std::string choix;
                 std::cin >> choix;
+
                 if(choix == "1"){
                     p.attack(e);
                 }
@@ -116,7 +114,6 @@ namespace combat{
                 e->addEnergie(15);
 
         }
-
 
         if(e.getHP()==0){
             std::cout << "player win";
