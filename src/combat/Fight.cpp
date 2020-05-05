@@ -6,19 +6,11 @@
 #include <string>
 
 #include "Fight.h"
-#include "Player.h"
 
-combat::Fight::Fight(std::string statFile): statFile(statFile) {
-
-    e = new Enemy(100, 200, 10, 10);
-    p = new Player(100, 200, 10, 10);
-
+combat::Fight::Fight(std::string statFile, combat::Player & p,  combat::Enemy & e) : statFile(statFile), p(p),e(e) {
 }
 
 void combat::Fight::startFight(){
-
-
-
     //les pdvs
     IsTriangle<float> critcical(0,0,40);
     IsTriangle<float> wounded(30,50,80);
@@ -84,26 +76,26 @@ void combat::Fight::startFight(){
 
     while(e.getHP()>0 || p.getHP()>0){
 
-        std::cout << "votre energie=\"" << p->getEnergy() << "\" votre santé=\"" << p->getHealth() << "\"" ;
-        std::cout << "l\'ennemie energie=\"" << e->getEnergy() << "\" et sa santé=\"" << e->getHealth() << "\" \n ";
+        std::cout << "votre energie=\"" << p.getEnergy() << "\" votre santé=\"" << p.getHP() << "\"" ;
+        std::cout << "l\'ennemie energie=\"" << e.getEnergy() << "\" et sa santé=\"" << e.getHP() << "\" \n ";
 
-        std::cout << "que voulez vous faire ?"
-        std::cout << "1.attaquer"
-        std::cout << "2.se soigner"
+        std::cout << "que voulez vous faire ?";
+        std::cout << "1.attaquer";
+        std::cout << "2.se soigner";
         std::string choix;
         std::cin >> choix;
         if(choix == "1"){
-            p.attack(e);
+            e.substractHP(p.attack());
         }
         else if(choix == "2"){
-            p.heal();
+            p.addHP(30);
         }
 
 
-        e->decision(valp->evaluate(),vale->evaluate(),p);
+        p.substractHP(e.makeDecision((float)valp->evaluate(),(float)vale->evaluate()));
 
-        p->addEnergie(15);
-        e->addEnergie(15);
+        p.addEnergy(15);
+        e.addEnergy(15);
 
     }
 
@@ -119,6 +111,4 @@ void combat::Fight::startFight(){
 }
 
 combat::Fight::~Fight() {
-    delete e;
-    delete p;
 }

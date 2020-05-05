@@ -15,7 +15,7 @@ namespace fuzzy{
         MamdaniDeFuzz(const T & min, const T & max, const T & step);
         MamdaniDeFuzz(){}
         virtual ~MamdaniDeFuzz(){}
-        virtual  T evaluate(core::Expression<T>* ,core::Expression<T>*)const=0;
+        virtual  T evaluate(const core::Expression<T>* ,const core::Expression<T>*)const=0;
         virtual T getMin()const;
         virtual T getMax()const;
         virtual T getStep()const;

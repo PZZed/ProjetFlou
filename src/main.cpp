@@ -15,6 +15,8 @@
 #include "fuzzy/CogDefuzz.h"
 #include "fuzzy/FuzzyFactory.h"
 #include "fuzzy/AggMax.h"
+#include "Combat/Player.h"
+#include "Combat/Fight.h"
 
 using namespace core;
 using namespace std;
@@ -105,14 +107,20 @@ int main() {
     Expression<float> *system2 = factorySugeno.newSugenoDefuzz(&regle);
 
     // *****************************************************************************************************************
-    while(true)
+    /*while(true)
     {
         cout << "service : ";cin >> s;
         service.setValue(s);
         cout << "food : ";cin >> s;
         food.setValue(s);
-        cout << "tips -> " << system2->evaluate() << endl;
-    }
+        cout << "Mamdani tips -> " << system->evaluate() << endl;
+        cout << "Sugeno tips -> " << system2->evaluate() << endl;
+    }*/
+    combat::Player pla;
+    combat::Enemy ene;
+    combat::Fight fight("",pla,ene);
+
+    fight.startFight();
 
     return 0;
 }
