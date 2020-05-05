@@ -15,12 +15,12 @@ namespace combat{
         public:
             Player();
             virtual int attack();
-            virtual void addEnergy(int i);
-            virtual void substractEnergy(int i);
-            virtual void addHP(int i);
-            virtual void substractHP(int i);
-            virtual int getHP();
-            virtual int getEnergy();
+            virtual void addEnergy(const int i);
+            virtual void substractEnergy(const int i);
+            virtual void addHP(const int i);
+            virtual void substractHP(const int i);
+            virtual int getHP()const;
+            virtual int getEnergy()const;
 
 
 

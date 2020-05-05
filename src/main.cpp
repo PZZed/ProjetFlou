@@ -123,7 +123,7 @@ int main() {
         food.setValue(s);
         cout << "Mamdani tips -> " << system->evaluate() << endl;
         cout << "Sugeno tips -> " << system2->evaluate() << endl;
-    }
+    }*/
     combat::Player pla;
     combat::Enemy ene;
     combat::Fight fight("",pla,ene);

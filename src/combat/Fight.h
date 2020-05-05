@@ -28,7 +28,7 @@ using namespace core;
 namespace combat{
     class Fight{
     public :
-        Fight(std::string statFile,  Player &p, Enemy &e);
+        Fight(std::string statFile, Player &p, Enemy &e);
         virtual ~Fight();
         void startFight();
 

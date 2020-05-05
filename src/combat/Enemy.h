@@ -17,12 +17,12 @@ namespace combat{
         Enemy();
         virtual ~Enemy(){}
         virtual int attack();
-        virtual void addEnergy(int i);
-        virtual void substractEnergy(int i);
-        virtual void substractHP(int i);
-        virtual int getHP();
-        virtual int getEnergy();
-        int makeDecision( float descisione);
+        virtual void addEnergy(cosnt int i);
+        virtual void substractEnergy(const int i);
+        virtual void substractHP(const int i);
+        virtual int getHP()const ;
+        virtual int getEnergy()const;
+        int makeDecision( const float descisione);
 
 
     private:

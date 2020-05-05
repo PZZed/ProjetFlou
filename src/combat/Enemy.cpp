@@ -39,11 +39,11 @@ void combat::Enemy::substractHP(int i) {
     }
 }
 
-int combat::Enemy::getHP() {
+int combat::Enemy::getHP() const{
     return hp;
 }
 
-int combat::Enemy::getEnergy(){
+int combat::Enemy::getEnergy()const{
     return energy;
 }
 

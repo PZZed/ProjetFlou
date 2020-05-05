@@ -17,39 +17,39 @@ int combat::Player::attack(){
     return damage;
 }
 
-void combat::Player::addEnergy(int i){
+void combat::Player::addEnergy(const int i){
     energy +=i;
     if (energy>200){
         energy=200;
     }
 }
 
-void combat::Player::substractEnergy(int i){
+void combat::Player::substractEnergy(const int i){
     energy-=i;
     if(energy < 0){
         energy=0;
     }
 }
 
-void combat::Player::addHP(int i) {
+void combat::Player::addHP(const int i) {
     hp+=i;
     if(hp >100){
         hp=100;
     }
 }
 
-void combat::Player::substractHP(int i) {
+void combat::Player::substractHP(const int i) {
     hp-=i;
     if(hp < 0){
         hp=0;
     }
 }
 
-int combat::Player::getHP() {
+int combat::Player::getHP()const {
     return hp;
 }
 
-int combat::Player::getEnergy(){
+int combat::Player::getEnergy()const {
     return energy;
 }
 
