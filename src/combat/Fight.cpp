@@ -85,14 +85,13 @@ void combat::Fight::startFight(){
         std::string choix;
         std::cin >> choix;
         if(choix == "1"){
-            p.attack(e);
+            e.substractHP(p.attack());
         }
         else if(choix == "2"){
             p.addHP(30);
         }
 
-
-       // e.makeDecision(p,(float)valp->evaluate(),(float)vale->evaluate());
+        p.substractHP(e.makeDecision((float)valp->evaluate(),(float)vale->evaluate()));
 
         p.addEnergy(15);
         e.addEnergy(15);
